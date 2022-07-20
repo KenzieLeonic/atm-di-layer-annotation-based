@@ -1,7 +1,12 @@
 package atm;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.Map;
 
+@Component
 /**
  * A bank contains customers with bank accounts.
  */
@@ -14,7 +19,8 @@ public class Bank {
    /**
     * Constructs a bank with no customers.
     */
-   public Bank(String name, DataSource dataSource) {
+   @Autowired
+   public Bank(@Value("${bankname}") String name, DataSource dataSource) {
       this.name = name;
       this.dataSource = dataSource;
       this.customers = dataSource.readCustomers();
